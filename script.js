@@ -6,7 +6,7 @@ const medicationListEl = document.getElementById('medication-list');
 const medicationButton = document.getElementById('medication-button');
 const medicationModal = document.getElementById('medication-modal');
 const medicationCloseButton = document.getElementById('medication-close-button');
-const pointTimerEl = document.getElementById('point-timer'); // Novo elemento
+const pointTimerEl = document.getElementById('point-timer');
 
 
 // Define as tarefas
@@ -257,17 +257,15 @@ localStorage.setItem('neededItems', JSON.stringify(neededItems));
 
 // --- Funções do Sistema de Ponto ---
 let pointTimerInterval;
-const pointScheduledTimes = {
-'Saída (Intervalo)': '12:00',
-'Retorno (Intervalo)': '18:00',
-'Saída': '22:00'
-};
 const pointStates = ['Entrada', 'Saída (Intervalo)', 'Retorno (Intervalo)', 'Saída'];
 
 function updatePointButton() {
 const state = localStorage.getItem('pointState') || 'Entrada';
 pointActionButton.textContent = state;
 pointActionButton.className = 'action-button';
+pointActionButton.disabled = false;
+pointTimerEl.textContent = '';
+clearInterval(pointTimerInterval);
 
 switch (state) {
 case 'Entrada':
@@ -275,16 +273,17 @@ pointActionButton.classList.add('point-entrada');
 break;
 case 'Saída (Intervalo)':
 pointActionButton.classList.add('point-intervalo');
+startPointTimer(localStorage.getItem('lastPointTime'), 2 * 60 * 60 * 1000);
 break;
 case 'Retorno (Intervalo)':
 pointActionButton.classList.add('point-retorno');
+startPointTimer(localStorage.getItem('lastPointTime'), 60 * 60 * 1000);
 break;
 case 'Saída':
 pointActionButton.classList.add('point-saida');
+startPointTimer(localStorage.getItem('lastPointTime'), 60 * 60 * 1000);
 break;
 }
-
-startPointTimer(state);
 }
 
 function handlePointAction() {
@@ -303,6 +302,9 @@ const records = JSON.parse(localStorage.getItem(`pointRecords_${today}`)) || [];
 records.push(record);
 localStorage.setItem(`pointRecords_${today}`, JSON.stringify(records));
 
+// Salva o timestamp da última ação
+localStorage.setItem('lastPointTime', now.getTime());
+
 const currentIndex = pointStates.indexOf(currentState);
 const nextIndex = (currentIndex + 1) % pointStates.length;
 const nextState = pointStates[nextIndex];
@@ -313,45 +315,31 @@ generateAndSendReport();
 localStorage.removeItem(`pointRecords_${today}`);
 localStorage.removeItem('savedTasks');
 localStorage.removeItem('pointState');
+localStorage.removeItem('lastPointTime');
 }
 
 updatePointButton();
 }
 
-function startPointTimer(state) {
-pointActionButton.disabled = false;
-pointTimerEl.textContent = '';
-clearInterval(pointTimerInterval);
+function startPointTimer(lastTime, delay) {
+const timeToUnlock = parseInt(lastTime) + delay;
+const remaining = timeToUnlock - new Date().getTime();
 
-const nextActionName = pointStates[(pointStates.indexOf(state) + 1) % pointStates.length];
-const nextActionTimeStr = pointScheduledTimes[nextActionName];
-
-if (!nextActionTimeStr) {
-pointTimerEl.textContent = '';
-return;
-}
-
-const [hour, minute] = nextActionTimeStr.split(':').map(Number);
-const now = new Date();
-let targetTime = new Date();
-targetTime.setHours(hour, minute, 0, 0);
-
-const timeUntilUnlock = targetTime.getTime() - (60 * 60 * 1000) - now.getTime(); // 1 hora antes
-
-if (timeUntilUnlock > 0) {
+if (remaining > 0) {
 pointActionButton.disabled = true;
-pointTimerEl.textContent = `Disponível em: --:--:--`;
 pointTimerInterval = setInterval(() => {
-const remaining = targetTime.getTime() - (60 * 60 * 1000) - new Date().getTime();
-if (remaining <= 0) {
+const now = new Date().getTime();
+const remainingTime = timeToUnlock - now;
+
+if (remainingTime <= 0) {
 clearInterval(pointTimerInterval);
 pointActionButton.disabled = false;
 pointTimerEl.textContent = 'Pronto!';
 return;
 }
-const hours = Math.floor(remaining / (1000 * 60 * 60));
-const minutes = Math.floor((remaining % (1000 * 60 * 60)) / (1000 * 60));
-const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+const hours = Math.floor(remainingTime / (1000 * 60 * 60));
+const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
 
 const formattedTime =
 `${hours.toString().padStart(2, '0')}:` +
@@ -360,9 +348,11 @@ const formattedTime =
 
 pointTimerEl.textContent = `Disponível em: ${formattedTime}`;
 }, 1000);
+} else {
+pointActionButton.disabled = false;
+pointTimerEl.textContent = 'Pronto!';
 }
 }
-
 
 // --- Funções para a Lista de Remédios ---
 function openMedicationModal() {
