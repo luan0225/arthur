@@ -1,48 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rotina do Bebê</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rotina do Bebê</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        <h1>Rotina do Arthur lian </h1>
-        <div class="header-buttons">
-            <button id="calendar-button" class="action-button">🗓️ Calendário</button>
-            <button id="cart-button" class="action-button">🛒 Compras</button>
-            <button id="point-action-button" class="action-button point-entrada">🕒 Entrada</button>
-        </div>
-    </header>
+<header>
+<h1>Rotina do Arthur lian </h1>
+<div class="header-buttons">
+<button id="medication-button" class="action-button">💊 Remédios</button>
+<button id="calendar-button" class="action-button">🗓️ Calendário</button>
+<button id="cart-button" class="action-button">🛒 Compras</button>
+<div class="point-system">
+<button id="point-action-button" class="action-button point-entrada">🕒 Entrada</button>
+<p id="point-timer" class="timer-display"></p>
+</div>
+</div>
+</header>
 
-    <main>
-        <div class="container">
-            <div class="tasks-section">
-                <h2>Tarefas do Dia</h2>
-                <ul id="task-list"></ul>
-            </div>
-        </div>
-    </main>
+<main>
+<div class="container">
+<div class="tasks-section">
+<h2>Tarefas do Dia</h2>
+<ul id="task-list"></ul>
+</div>
+</div>
+</main>
 
-    <div id="calendar-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="calendar-close-button">&times;</span>
-            <h2>Calendário de Rotina</h2>
-            <div id="calendar"></div>
-        </div>
-    </div>
+<div id="medication-modal" class="modal">
+<div class="modal-content">
+<span class="close-button" id="medication-close-button">&times;</span>
+<h2>Horários de Remédios</h2>
+<ul id="medication-list"></ul>
+</div>
+</div>
 
-    <div id="shopping-list-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" id="shopping-close-button">&times;</span>
-            <h2>Lista de Compras</h2>
-            <ul id="shopping-list-items"></ul>
-            <p class="modal-tip">Toque nos itens que estão faltando.</p>
-        </div>
-    </div>
-    
-    <script src="script.js"></script>
+<div id="calendar-modal" class="modal">
+<div class="modal-content">
+<span class="close-button" id="calendar-close-button">&times;</span>
+<h2>Calendário de Rotina</h2>
+<div id="calendar"></div>
+</div>
+</div>
+
+<div id="shopping-list-modal" class="modal">
+<div class="modal-content">
+<span class="close-button" id="shopping-close-button">&times;</span>
+<h2>Lista de Compras</h2>
+<ul id="shopping-list-items"></ul>
+<p class="modal-tip">Toque nos itens que estão faltando.</p>
+</div>
+</div>
+
+<script src="script.js"></script>
 </body>
 </html>

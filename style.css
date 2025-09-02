@@ -1,319 +1,327 @@
 /* Estilos gerais do site (Mobile-first) */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #eef2f7;
-    color: #444;
-    margin: 0;
-    padding: 15px;
-    overflow-x: hidden;
-    line-height: 1.6;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #f0f4f8; /* Azul claro suave */
+color: #334e68; /* Azul escuro para texto */
+margin: 0;
+padding: 15px;
+overflow-x: hidden;
+line-height: 1.6;
 }
 
 header {
-    background-color: #1a73e8;
-    color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+background-color: #6a1b9a; /* Roxo vibrante */
+color: #fff;
+padding: 15px; /* Reduzindo o padding para um header menor */
+border-radius: 12px;
+margin-bottom: 20px;
+display: flex;
+flex-direction: column;
+align-items: center;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 h1 {
-    margin: 0 0 10px 0;
-    font-size: 1.8em;
-    font-weight: 600;
+margin: 0 0 10px 0;
+font-size: 1.6em; /* Tamanho da fonte um pouco menor */
+font-weight: 600;
 }
 
 .header-buttons {
-    display: flex;
-    gap: 10px;
-    width: 90%;
-    justify-content: center;
+display: flex;
+flex-wrap: wrap; /* Permite que os botões quebrem a linha no mobile */
+gap: 8px; /* Espaçamento menor entre os botões */
+width: 100%; /* Ocupa toda a largura disponível no mobile */
+justify-content: center;
 }
 
 .action-button {
-    padding: 12px 20px;
-    border: none;
-    border-radius: 8px;
-    background-color: #00c853;
-    color: #fff;
-    font-size: 0.9em;
-    font-weight: 600;
-    cursor: pointer;
-    width: 33.3%;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease;
+padding: 10px 15px; /* Padding ajustado para botões menores */
+border: none;
+border-radius: 8px;
+background-color: #ffb300; /* Laranja vibrante */
+color: #fff;
+font-size: 0.85em; /* Fonte do botão um pouco menor */
+font-weight: 600;
+cursor: pointer;
+flex: 1 1 auto; /* Permite que os botões se ajustem e ocupem o espaço */
+max-width: 48%; /* Limita a largura para caberem dois por linha em telas menores */
+box-sizing: border-box;
+transition: background-color 0.3s ease;
 }
 
 .action-button:hover {
-    background-color: #009624;
+background-color: #ff8f00; /* Laranja mais escuro no hover */
 }
 
 .container {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+display: flex;
+flex-direction: column;
+gap: 15px;
 }
 
 .tasks-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    box-sizing: border-box;
+background-color: #fff;
+padding: 20px;
+border-radius: 12px;
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+width: 100%;
+box-sizing: border-box;
 }
 
 h2 {
-    color: #1a73e8;
-    border-bottom: 2px solid #e0e0e0;
-    padding-bottom: 10px;
-    margin-top: 0;
-    font-size: 1.3em;
-    font-weight: 600;
+color: #6a1b9a; /* Roxo vibrante para títulos de seção */
+border-bottom: 2px solid #e0e0e0;
+padding-bottom: 10px;
+margin-top: 0;
+font-size: 1.3em;
+font-weight: 600;
 }
 
 #task-list {
-    list-style-type: none;
-    padding: 0;
+list-style-type: none;
+padding: 0;
 }
 
 #task-list li {
-    background-color: #f5f5f5;
-    padding: 12px;
-    margin-bottom: 10px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+background-color: #fdfefe; /* Fundo mais claro para itens da lista */
+padding: 12px;
+margin-bottom: 10px;
+border-radius: 8px;
+display: flex;
+justify-content: space-between;
+align-items: center;
+transition: background-color 0.2s ease, transform 0.2s ease;
+border: 1px solid #e9ecef; /* Borda suave */
 }
 
 #task-list li.next-task {
-    background-color: #98ff98;
-    color: #333;
-    font-weight: bold;
-    transform: scale(1.05);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+background-color: #a7ffeb; /* Verde-água claro e vibrante */
+color: #004d40; /* Texto escuro para contraste */
+font-weight: bold;
+transform: scale(1.03); /* Ajuste leve no scale */
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+border-color: #00c853; /* Borda mais forte */
 }
 
 #task-list li.completed {
-    background-color: #e8f5e9;
-    text-decoration: line-through;
-    color: #888;
+background-color: #e8f5e9;
+text-decoration: line-through;
+color: #888;
 }
 
 #calendar {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 5px;
-    text-align: center;
-    font-size: 0.9em;
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 5px;
+text-align: center;
+font-size: 0.9em;
 }
 
 .day-header, .day {
-    padding: 10px 0;
+padding: 10px 0;
 }
 
 .day {
-    border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-    cursor: pointer;
+border-radius: 8px;
+transition: background-color 0.3s ease, color 0.3s ease;
+cursor: pointer;
 }
 
 .day:hover {
-    background-color: #e0e0e0;
+background-color: #e0e0e0;
 }
 
 .day.today {
-    background-color: #1a73e8;
-    color: #fff;
-    font-weight: bold;
+background-color: #6a1b9a; /* Roxo do header */
+color: #fff;
+font-weight: bold;
 }
 
 .day.selected {
-    background-color: #00c853;
-    color: #fff;
-    font-weight: bold;
+background-color: #ffb300; /* Laranja vibrante */
+color: #fff;
+font-weight: bold;
 }
 
 .day-header:first-child,
 .day-header:last-child {
-    color: #e85550;
-    font-weight: 600;
+color: #e53935; /* Vermelho mais intenso para fins de semana */
+font-weight: 600;
 }
 
 .day:nth-child(7n+1),
 .day:nth-child(7n) {
-    background-color: #fce8e8;
-    color: #e85550;
-    font-weight: 600;
+background-color: #ffebee; /* Rosa claro para fins de semana no calendário */
+color: #e53935;
+font-weight: 600;
 }
 
 .day:hover:nth-child(7n+1),
 .day:hover:nth-child(7n) {
-    background-color: #f8d2d2;
+background-color: #ffcdd2;
 }
 
 .day.today:nth-child(7n+1),
 .day.today:nth-child(7n),
 .day.selected:nth-child(7n+1),
 .day.selected:nth-child(7n) {
-    background-color: initial;
-    color: initial;
+background-color: initial;
+color: initial;
 }
 
 .point-buttons {
-    display: flex;
-    justify-content: center;
+display: flex;
+justify-content: center;
 }
 
 #point-action-button {
-    padding: 12px 20px;
-    width: 33.3%;
-    border: none;
-    border-radius: 8px;
-    color: #fff;
-    font-size: 0.9em;
-    font-weight: 600;
-    cursor: pointer;
-    box-sizing: border-box;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+padding: 12px 20px;
+width: 100%; /* Ajuste para mobile */
+border: none;
+border-radius: 8px;
+color: #fff;
+font-size: 0.9em;
+font-weight: 600;
+cursor: pointer;
+box-sizing: border-box;
+transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 #point-action-button:hover {
-    transform: translateY(-2px);
+transform: translateY(-2px);
 }
 
 .point-entrada {
-    background-color: #00c853;
+background-color: #00c853; /* Verde para entrada */
 }
 
 .point-intervalo, .point-retorno {
-    background-color: #1a73e8;
+background-color: #2196f3; /* Azul para intervalo */
 }
 
 .point-saida {
-    background-color: #e85550;
+background-color: #e53935; /* Vermelho para saída */
 }
 
 #point-records li {
-    background-color: #f5f5f5;
-    padding: 12px;
-    margin-top: 10px;
-    border-radius: 8px;
-    font-size: 0.9em;
+background-color: #f5f5f5;
+padding: 12px;
+margin-top: 10px;
+border-radius: 8px;
+font-size: 0.9em;
 }
 
 .modal {
-    display: none; 
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.6);
-    justify-content: center;
-    align-items: center;
+display: none;
+position: fixed;
+z-index: 1000;
+left: 0;
+top: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.6);
+justify-content: center;
+align-items: center;
 }
 
 .modal-content {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-    width: 90%;
-    max-width: 450px;
-    box-sizing: border-box;
-    position: relative;
-    text-align: center;
+background-color: #fff;
+padding: 25px;
+border-radius: 12px;
+box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+width: 90%;
+max-width: 450px;
+box-sizing: border-box;
+position: relative;
+text-align: center;
 }
 
 .modal-content h2 {
-    border-bottom: 2px solid #1a73e8;
-    padding-bottom: 15px;
-    margin-bottom: 15px;
+border-bottom: 2px solid #6a1b9a; /* Roxo para títulos de modal */
+padding-bottom: 15px;
+margin-bottom: 15px;
 }
 
 .modal-tip {
-    font-size: 0.8em;
-    font-style: italic;
-    color: #888;
+font-size: 0.8em;
+font-style: italic;
+color: #888;
 }
 
 .close-button {
-    color: #888;
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 30px;
-    font-weight: lighter;
-    cursor: pointer;
-    transition: color 0.3s ease;
+color: #888;
+position: absolute;
+top: 10px;
+right: 15px;
+font-size: 30px;
+font-weight: lighter;
+cursor: pointer;
+transition: color 0.3s ease;
 }
 
 .close-button:hover {
-    color: #555;
+color: #555;
 }
 
 #shopping-list-items {
-    list-style-type: none;
-    padding: 0;
-    text-align: left;
-    margin-top: 10px;
+list-style-type: none;
+padding: 0;
+text-align: left;
+margin-top: 10px;
 }
 
 #shopping-list-items li {
-    padding: 12px;
-    margin-bottom: 10px;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+padding: 12px;
+margin-bottom: 10px;
+background-color: #f5f5f5;
+border-radius: 8px;
+cursor: pointer;
+transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 #shopping-list-items li.needed {
-    background-color: #ffb74d;
-    font-weight: bold;
-    color: #444;
+background-color: #ffecb3; /* Amarelo claro para itens necessários */
+font-weight: bold;
+color: #444;
+border-color: #ffb300; /* Borda laranja */
 }
 
 #shopping-list-items li:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-2px);
+background-color: #e0e0e0;
+transform: translateY(-2px);
 }
 
 @media screen and (min-width: 769px) {
-    body {
-        padding: 30px;
-    }
-    header {
-        flex-direction: row;
-        justify-content: space-between;
-    }
-    h1 {
-        margin: 0;
-    }
-    .header-buttons {
-        width: auto;
-    }
-    .action-button {
-        width: auto;
-    }
-    .container {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    .tasks-section, .point-system-section {
-        flex: 1;
-        min-width: 300px;
-    }
-    .point-buttons {
-        flex-direction: row;
-        justify-content: space-between;
-    }
+body {
+padding: 30px;
+}
+header {
+flex-direction: row;
+justify-content: space-between;
+}
+h1 {
+margin: 0;
+}
+.header-buttons {
+width: auto;
+flex-wrap: nowrap; /* Remove a quebra de linha em telas maiores */
+gap: 10px; /* Restaura o espaçamento padrão */
+}
+.action-button {
+width: auto; /* Deixa a largura automática para telas maiores */
+max-width: none; /* Remove a limitação de largura */
+}
+.container {
+flex-direction: row;
+flex-wrap: wrap;
+}
+.tasks-section {
+flex: 1;
+min-width: 300px;
+}
+.point-buttons {
+flex-direction: row;
+justify-content: space-between;
+}
 }
